@@ -1,6 +1,6 @@
 {
-  "name": "bible-scraper",
-  "description": "Retrieve verses from bible.com/YouVersion.",
+  "name": "bible-scraper-sqlite",
+  "description": "Retrieve verses from bible.com/YouVersion into SQLite databases",
   "keywords": [
     "bible",
     "scraper",
@@ -8,47 +8,52 @@
     "verses",
     "from",
     "com",
-    "youversion"
+    "youversion",
+    "into",
+    "sqlite"
   ],
   "license": "MIT",
-  "version": "2.2.1",
-  "main": "lib/index.js",
+  "version": "1.0.0",
+  "main": "",
   "scripts": {
-    "test": "jest tests/index.test.js"
+    "test": ""
   },
-  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
-  "homepage": "https://github.com/IonicaBizau/bible-scraper#readme",
+  "author": "Bogdan Sydorenko <bodik24ua@gmail.com> (https://ionicabizau.net)",
+  "homepage": "https://github.com/bodik24ua/bible-scraper-sqlite",
   "files": [
-    "bin/",
-    "app/",
-    "lib/",
-    "dist/",
-    "src/",
-    "scripts/",
-    "resources/",
-    "menu/",
-    "cli.js",
-    "index.js",
-    "index.d.ts",
-    "package-lock.json",
-    "bloggify.js",
-    "bloggify.json",
-    "bloggify/"
+    "get_sqlite_bibles/get_all_translations.js",
+    "get_sqlite_bibles/get_bibles_cmd_v1_sqlite.js",
+    "get_sqlite_bibles/get_bibles_cmd_v2_sqlite.js",
+    "get_sqlite_bibles/get_bibles_cmd_v3_sqlite.js",
+    "get_sqlite_bibles/get_bibles_into_sqlite.js",
+    "get_sqlite_bibles/test_get_gen_1_1_umt.js"
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/IonicaBizau/bible-scraper.git"
+    "url": "git+ssh://git@github.com/bodik24ua/bible-scraper-sqlite.git"
   },
   "bugs": {
-    "url": "https://github.com/IonicaBizau/bible-scraper/issues"
+    "url": "https://github.com/bodik24ua/bible-scraper-sqlite/issues"
   },
   "dependencies": {
-    "scrape-it": "^6.0.1"
+    "and": "^0.0.3",
+    "bible-scraper": "^2.2.1",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0",
+    "cli-progress": "^3.12.0",
+    "inquirer": "^12.9.6",
+    "scrape-it": "^6.0.1",
+    "sqlite3": "^5.1.7"
   },
   "contributors": [
-    "Simone Guarnuccio <simoneguarnuccio@gmail.com>"
+    "Simone Guarnuccio <simoneguarnuccio@gmail.com>",
+    "Bogdan Sydorenko <bodik24ua@gmail.com>"
   ],
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "directories": {
+    "get_sqlite_bibles": "get_sqlite_bibles"
   }
 }
+  
