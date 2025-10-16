@@ -362,7 +362,7 @@ async function runDownloader(concurrency) {
     let languages = Object.entries(allTranslations);
 
     if (DOWNLOAD_ONLY_MAIN_LANGUAGES) {
-        log('{yellow-fg}Download mode: Main (Major) languages only.{/yellow-fg}');
+        log('{yellow-fg}Download mode: Main (Major) languages only. Switch const DOWNLOAD_ONLY_MAIN_LANGUAGES to false (on line 18) for download all languages in translations.json{/yellow-fg}');
         const originalLangCount = languages.length;
         languages = languages.filter(([langKey]) => {
             const langCode = langKey.split(' - ').pop();
