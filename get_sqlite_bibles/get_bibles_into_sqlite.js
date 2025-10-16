@@ -114,6 +114,9 @@ stats.errors.setDisplay = function(text) {
 stats.languages.setDisplay = function(text) {
     this.setContent(`{bold}Languages:{/bold} ${text}`);
 }
+stats.total.setDisplay = function(text) {
+    this.setContent(`{bold}Total:{/bold} ${text}`);
+};
 
 const threadInput = blessed.textbox({
     parent: settingsBox, name: 'concurrency', inputOnFocus: true,
@@ -184,8 +187,16 @@ async function createTables(db) {
 }
 
 async function populateBookNames(db, bibleScraperInstance) {
+    // Reconstruct the short names mapping from the public API
+    const booksAndUsfmShortcodes = {};
     const bookNames = BibleScraper.BOOKS;
-    const booksAndUsfmShortcodes = require('./lib/booksAndUsfmShortcodes');
+    bookNames.forEach(bookName => {
+        // GEN.1 -> getBibleReference({ book: 'Genesis', chapter: 1 })
+        const ref = bibleScraperInstance.getBibleReference({ book: bookName, chapter: 1 });
+        const shortName = ref.split('.')[0];
+        booksAndUsfmShortcodes[bookName] = shortName;
+    });
+
     await runQuery(db, "BEGIN TRANSACTION");
     for (const bookIndex in bookNames) {
         const bookNumber = parseInt(bookIndex) + 1;
@@ -199,7 +210,15 @@ async function populateBookNames(db, bibleScraperInstance) {
 }
 
 async function populateAllVersesForTranslation(db, bibleScraperInstance, workerId, updateWorkerStatus) {
-    const booksAndUsfmShortcodes = require('./lib/booksAndUsfmShortcodes');
+    // Reconstruct the short names mapping from the public API
+    const booksAndUsfmShortcodes = {};
+    const bookNames = BibleScraper.BOOKS;
+    bookNames.forEach(bookName => {
+        const ref = bibleScraperInstance.getBibleReference({ book: bookName, chapter: 1 });
+        const shortName = ref.split('.')[0];
+        booksAndUsfmShortcodes[bookName] = shortName;
+    });
+
     const bookList = BibleScraper.BOOKS;
 
     await runQuery(db, "BEGIN TRANSACTION");
